@@ -9,10 +9,9 @@
 #include <utility>
 #include <vector>
 
-// обходы: К - корень, Л - левое поддерево, П - правое поддерево
 enum class Order { KLP, KPL, LPK, LKP, PLK, PKL };
 
-// в коде буквы латинские: K - корень, L - левое, P - правое
+//  K - корень, L - левое, P - правое
 inline const char* OrderToString(Order order) {
     switch(order) {
         case Order::KLP: return "KLP";
@@ -42,7 +41,6 @@ private:
     size_t count;
     Compare comp;
 
-    // формат строки: три пары скобок, внутри каждой K, L или P
     struct Format {
         char part[3];
         char open[3];
@@ -80,7 +78,6 @@ private:
         return 1 + (leftHeight > rightHeight ? leftHeight : rightHeight);
     }
 
-    // указатель на ссылку, в которой лежит (или должен лежать) узел со значением value
     Node<T>** FindLink(const T& value) {
         Node<T>** link = &root;
         while(*link != nullptr) {
@@ -461,7 +458,7 @@ public:
         return Merge(other);
     }
 
-    // деревья равны, если совпадают и значения, и форма
+    // деревья равны
     bool operator==(const BinarySearchTree& other) const {
         return count == other.count && SameShapeRec(root, other.root);
     }
